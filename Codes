@@ -1,0 +1,74 @@
+
+
+#include <reg52.h> 
+#include <intrins.h> 
+#define uint unsigned int 
+
+void delay(uint c) {
+	uint a,b;
+	for(a=c; a>0; a--) //Run nested for loop to generate delay
+	for(b=415; b>0; b--);
+}
+
+void main (void){
+
+
+//#1
+
+
+	P1 = 0xFE; 
+	while (1){
+		while(P1 != 0x7F){
+			delay(170);
+			P1 = _crol_(P1,1);
+		}
+
+		while(P1 != 0xFE){
+			delay(170);
+			P1 = _cror_(P1,1);
+		}
+	}
+	
+  
+  
+// #2
+
+
+	P1 = 0x7E;
+	while(1){
+			 start from outside and go in
+		delay(170);
+		P1 = 0x7E;
+		delay(170);
+		P1 = 0xBD;
+		delay(170);
+		P1 = 0xDB;
+		delay(170);
+		P1 = 0xE7;
+		delay(170);
+		P1 = 0xDB;
+		delay(170);
+		P1 = 0xBD;
+	}	
+	
+	
+// #3
+
+
+	P1 = 0xE7;
+	while(1){
+		delay(170);
+		P1 = 0xDB;
+		delay(170);
+		P1 = 0xBD;
+		delay(170);
+		P1 = 0x7E;
+		delay(170);
+		P1 = 0xBD;
+				delay(170);
+		P1 = 0xDB;
+		delay(170);
+		P1 = 0xE7;
+}
+	
+}
